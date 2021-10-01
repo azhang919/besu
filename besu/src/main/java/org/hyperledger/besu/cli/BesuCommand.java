@@ -303,13 +303,13 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @CommandLine.Option(
       names = {CONFIG_FILE_OPTION_NAME},
       paramLabel = MANDATORY_FILE_FORMAT_HELP,
-      description = "TOML config file (default: none)")
+      description = "%nTOML config file (default: none)")
   private final File configFile = null;
 
   @CommandLine.Option(
       names = {"--data-path"},
       paramLabel = MANDATORY_PATH_FORMAT_HELP,
-      description = "The path to Besu data directory (default: ${DEFAULT-VALUE})")
+      description = "%nThe path to Besu data directory (default: ${DEFAULT-VALUE})")
   final Path dataPath = getDefaultBesuDataPath(this);
 
   // Genesis file path with null default option if the option
@@ -327,7 +327,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = "--identity",
       paramLabel = "<String>",
-      description = "Identification for this node in the Client ID",
+      description = "%nIdentification for this node in the Client ID",
       arity = "1")
   private final Optional<String> identityString = Optional.empty();
 
@@ -373,7 +373,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--max-peers"},
       paramLabel = MANDATORY_INTEGER_FORMAT_HELP,
-      description = "Maximum P2P connections that can be established (default: ${DEFAULT-VALUE})")
+      description = "%nMaximum P2P connections that can be established (default: ${DEFAULT-VALUE})")
   private final Integer maxPeers = DEFAULT_MAX_PEERS;
 
   @Option(
@@ -426,8 +426,9 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--sync-mode"},
       paramLabel = MANDATORY_MODE_FORMAT_HELP,
-      description =
-          "Synchronization mode, possible values are ${COMPLETION-CANDIDATES} (default: FAST if a --network is supplied and privacy isn't enabled. FULL otherwise.)")
+      description = "%nSynchronization mode, possible values are ${COMPLETION-CANDIDATES} (default: FAST if a " +
+              "--network" +
+              " is supplied and privacy isn't enabled. FULL otherwise.)")
   private SyncMode syncMode = null;
 
   @Option(
@@ -440,8 +441,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--network"},
       paramLabel = MANDATORY_NETWORK_FORMAT_HELP,
-      description =
-          "Synchronize against the indicated network, possible values are ${COMPLETION-CANDIDATES}."
+      description = "%nSynchronize against the indicated network, possible values are ${COMPLETION-CANDIDATES}."
               + " (default: MAINNET)")
   private final NetworkName network = null;
 
@@ -449,7 +449,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--p2p-host"},
       paramLabel = MANDATORY_HOST_FORMAT_HELP,
-      description = "IP address this node advertises to its peers (default: ${DEFAULT-VALUE})",
+      description = "%nIP address this node advertises to its peers (default: ${DEFAULT-VALUE})",
       arity = "1")
   private String p2pHost = autoDiscoverDefaultIP().getHostAddress();
 
@@ -457,15 +457,15 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--p2p-interface"},
       paramLabel = MANDATORY_HOST_FORMAT_HELP,
-      description =
-          "The network interface address on which this node listens for P2P communication (default: ${DEFAULT-VALUE})",
+      description = "%nThe network interface address on which this node listens for P2P communication (default: " +
+              "${DEFAULT-VALUE})",
       arity = "1")
   private String p2pInterface = NetworkUtility.INADDR_ANY;
 
   @Option(
       names = {"--p2p-port"},
       paramLabel = MANDATORY_PORT_FORMAT_HELP,
-      description = "Port on which to listen for P2P communication (default: ${DEFAULT-VALUE})",
+      description = "%nPort on which to listen for P2P communication (default: ${DEFAULT-VALUE})",
       arity = "1")
   private final Integer p2pPort = EnodeURLImpl.DEFAULT_LISTENING_PORT;
 
@@ -486,7 +486,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--graphql-http-enabled"},
-      description = "Set to start the GraphQL HTTP service (default: ${DEFAULT-VALUE})")
+      description = "%nSet to start the GraphQL HTTP service (default: ${DEFAULT-VALUE})")
   private final Boolean isGraphQLHttpEnabled = false;
 
   @SuppressWarnings({"FieldCanBeFinal", "FieldMayBeFinal"}) // PicoCLI requires non-final Strings.
@@ -512,21 +512,21 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--rpc-http-enabled"},
-      description = "Set to start the JSON-RPC HTTP service (default: ${DEFAULT-VALUE})")
+      description = "%nSet to start the JSON-RPC HTTP service (default: ${DEFAULT-VALUE})")
   private final Boolean isRpcHttpEnabled = false;
 
   @SuppressWarnings({"FieldCanBeFinal", "FieldMayBeFinal"}) // PicoCLI requires non-final Strings.
   @Option(
       names = {"--rpc-http-host"},
       paramLabel = MANDATORY_HOST_FORMAT_HELP,
-      description = "Host for JSON-RPC HTTP to listen on (default: ${DEFAULT-VALUE})",
+      description = "%nHost for JSON-RPC HTTP to listen on (default: ${DEFAULT-VALUE})",
       arity = "1")
   private String rpcHttpHost = autoDiscoverDefaultIP().getHostAddress();
 
   @Option(
       names = {"--rpc-http-port"},
       paramLabel = MANDATORY_PORT_FORMAT_HELP,
-      description = "Port for JSON-RPC HTTP to listen on (default: ${DEFAULT-VALUE})",
+      description = "%nPort for JSON-RPC HTTP to listen on (default: ${DEFAULT-VALUE})",
       arity = "1")
   private final Integer rpcHttpPort = DEFAULT_JSON_RPC_PORT;
 
@@ -578,7 +578,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--rpc-http-tls-enabled"},
-      description = "Enable TLS for the JSON-RPC HTTP service (default: ${DEFAULT-VALUE})")
+      description = "%nEnable TLS for the JSON-RPC HTTP service (default: ${DEFAULT-VALUE})")
   private final Boolean isRpcHttpTlsEnabled = false;
 
   @Option(
@@ -616,21 +616,21 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--rpc-ws-enabled"},
-      description = "Set to start the JSON-RPC WebSocket service (default: ${DEFAULT-VALUE})")
+      description = "%nSet to start the JSON-RPC WebSocket service (default: ${DEFAULT-VALUE})")
   private final Boolean isRpcWsEnabled = false;
 
   @SuppressWarnings({"FieldCanBeFinal", "FieldMayBeFinal"}) // PicoCLI requires non-final Strings.
   @Option(
       names = {"--rpc-ws-host"},
       paramLabel = MANDATORY_HOST_FORMAT_HELP,
-      description = "Host for JSON-RPC WebSocket service to listen on (default: ${DEFAULT-VALUE})",
+      description = "%nHost for JSON-RPC WebSocket service to listen on (default: ${DEFAULT-VALUE})",
       arity = "1")
   private String rpcWsHost = autoDiscoverDefaultIP().getHostAddress();
 
   @Option(
       names = {"--rpc-ws-port"},
       paramLabel = MANDATORY_PORT_FORMAT_HELP,
-      description = "Port for JSON-RPC WebSocket service to listen on (default: ${DEFAULT-VALUE})",
+      description = "%nPort for JSON-RPC WebSocket service to listen on (default: ${DEFAULT-VALUE})",
       arity = "1")
   private final Integer rpcWsPort = DEFAULT_WEBSOCKET_PORT;
 
@@ -676,14 +676,13 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--privacy-tls-enabled"},
       paramLabel = MANDATORY_FILE_FORMAT_HELP,
-      description = "Enable TLS for connecting to privacy enclave (default: ${DEFAULT-VALUE})")
+      description = "%nEnable TLS for connecting to privacy enclave (default: ${DEFAULT-VALUE})")
   private final Boolean isPrivacyTlsEnabled = false;
 
   @Option(
       names = "--privacy-tls-keystore-file",
       paramLabel = MANDATORY_FILE_FORMAT_HELP,
-      description =
-          "Path to a PKCS#12 formatted keystore; used to enable TLS on inbound connections.")
+      description = "Path to a PKCS#12 formatted keystore; used to enable TLS on inbound connections.")
   private final Path privacyKeyStoreFile = null;
 
   @Option(
@@ -700,7 +699,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--metrics-enabled"},
-      description = "Set to start the metrics exporter (default: ${DEFAULT-VALUE})")
+      description = "%nSet to start the metrics exporter (default: ${DEFAULT-VALUE})")
   private final Boolean isMetricsEnabled = false;
 
   @SuppressWarnings({"FieldCanBeFinal", "FieldMayBeFinal"}) // PicoCLI requires non-final Strings.
@@ -714,14 +713,14 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--metrics-host"},
       paramLabel = MANDATORY_HOST_FORMAT_HELP,
-      description = "Host for the metrics exporter to listen on (default: ${DEFAULT-VALUE})",
+      description = "%nHost for the metrics exporter to listen on (default: ${DEFAULT-VALUE})",
       arity = "1")
   private String metricsHost = autoDiscoverDefaultIP().getHostAddress();
 
   @Option(
       names = {"--metrics-port"},
       paramLabel = MANDATORY_PORT_FORMAT_HELP,
-      description = "Port for the metrics exporter to listen on (default: ${DEFAULT-VALUE})",
+      description = "%nPort for the metrics exporter to listen on (default: ${DEFAULT-VALUE})",
       arity = "1")
   private final Integer metricsPort = DEFAULT_METRICS_PORT;
 
@@ -736,7 +735,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--metrics-push-enabled"},
-      description = "Enable the metrics push gateway integration (default: ${DEFAULT-VALUE})")
+      description = "%nEnable the metrics push gateway integration (default: ${DEFAULT-VALUE})")
   private final Boolean isMetricsPushEnabled = false;
 
   @SuppressWarnings({"FieldCanBeFinal", "FieldMayBeFinal"}) // PicoCLI requires non-final Strings.
@@ -772,8 +771,8 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--host-allowlist"},
       paramLabel = "<hostname>[,<hostname>...]... or * or all",
-      description =
-          "Comma separated list of hostnames to allow for RPC access, or * to accept any host (default: ${DEFAULT-VALUE})",
+      description = "Comma separated list of hostnames to allow for RPC access, or * to accept any host (default: " +
+              "${DEFAULT-VALUE})",
       defaultValue = "localhost,127.0.0.1")
   private final JsonRPCAllowlistHostsProperty hostsAllowlist = new JsonRPCAllowlistHostsProperty();
 
@@ -794,8 +793,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @SuppressWarnings({"FieldCanBeFinal", "FieldMayBeFinal"})
   @Option(
       names = {"--color-enabled"},
-      description =
-          "Force color output to be enabled/disabled (default: colorized only if printing to console)")
+      description = "%nForce color output to be enabled/disabled (default: colorized only if printing to console)")
   private static Boolean colorEnabled = null;
 
   @Option(
@@ -806,7 +804,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--miner-enabled"},
-      description = "Set if node will perform mining (default: ${DEFAULT-VALUE})")
+      description = "%nSet if node will perform mining (default: ${DEFAULT-VALUE})")
   private final Boolean isMiningEnabled = false;
 
   @Option(
@@ -864,8 +862,8 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--pruning-enabled"},
-      description =
-          "Enable disk-space saving optimization that removes old state that is unlikely to be required (default: ${DEFAULT-VALUE})")
+      description = "%nEnable disk-space saving optimization that removes old state that is unlikely to be required " +
+              "(default: ${DEFAULT-VALUE})")
   private final Boolean pruningEnabled = false;
 
   @Option(
@@ -888,8 +886,8 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @SuppressWarnings({"FieldCanBeFinal", "FieldMayBeFinal"}) // PicoCLI requires non-final Strings.
   @CommandLine.Option(
       names = {"--permissions-accounts-config-file"},
-      description =
-          "Account permissioning config TOML file (default: a file named \"permissions_config.toml\" in the Besu data folder)")
+      description = "Account permissioning config TOML file (default: a file named \"permissions_config.toml\" in the" +
+              " Besu data folder)")
   private String accountPermissionsConfigFile = null;
 
   @Option(
@@ -922,7 +920,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
 
   @Option(
       names = {"--privacy-enabled"},
-      description = "Enable private transactions (default: ${DEFAULT-VALUE})")
+      description = "%nEnable private transactions (default: ${DEFAULT-VALUE})")
   private final Boolean isPrivacyEnabled = false;
 
   @Option(
@@ -1035,7 +1033,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @Option(
       names = {"--override-genesis-config"},
       paramLabel = "NAME=VALUE",
-      description = "Overrides configuration values in the genesis file.  Use with care.",
+      description = "%nOverrides configuration values in the genesis file.  Use with care.",
       arity = "*",
       hidden = true,
       split = ",")
@@ -1064,7 +1062,7 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
   @CommandLine.Option(
       names = {"--pid-path"},
       paramLabel = MANDATORY_PATH_FORMAT_HELP,
-      description = "Path to PID file (optional)")
+      description = "%nPath to PID file (optional)")
   private final Path pidPath = null;
 
   @CommandLine.Option(
@@ -1189,6 +1187,10 @@ public class BesuCommand implements DefaultCommandValues, Runnable {
     registerConverters();
     handleUnstableOptions();
     preparePlugins();
+
+    // Set CLI line wrapping threshold to 85 characters
+    commandLine.setUsageHelpWidth(85);
+
     parse(resultHandler, exceptionHandler, args);
   }
 
